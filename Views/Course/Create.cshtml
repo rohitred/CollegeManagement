@@ -1,0 +1,62 @@
+﻿@model CollegeManagement.Models.Course
+
+@{
+    ViewData["Title"] = "Add Course";
+}
+
+<form method="post" asp-controller="Course" asp-action="Create">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Add Course</h2>
+        </div>
+    
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CourseName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="CourseName" class="form-control" />
+                        <span asp-validation-for="CourseName" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CourseCode"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="CourseCode" class="form-control" />
+                        <span asp-validation-for="CourseCode" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CourseDescription"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="CourseDescription"></textarea>
+                        <span asp-validation-for="CourseDescription" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-success w-100" value="Submit" />
+                        </div>
+                        <div>
+                            <a asp-controller="Course" asp-action="Index" class="btn btn-danger">Go Back</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+

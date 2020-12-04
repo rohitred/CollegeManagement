@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Teacher>
+
+
+@{
+    ViewData["Title"] = "Teacher";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Teacher List</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Teacher" asp-action="Create" class="btn btn-primary">Add New Teacher</a>
+        </div>
+    </div>
+    <br /><br />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>Teacher Name</th>
+                    <th>Teacher Email</th>
+                    <th>Teacher Address</th>
+                    <th>Teacher Contact</th>
+                    <th>Department</th>
+                    <th>Course Taught</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int sno= 1; }
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td width="30%">@sno</td>
+                    <td width="50%">@obj.TeacherName</td>
+                    <td width="50%">@obj.TeacherEmail</td>
+                    <td width="50%">@obj.TeacherAddress</td>
+                    <td width="50%">@obj.TeacherContactNo</td>
+                    <td width="50%">@obj.Department.DepartmentName</td>
+                    <th>@obj.Course.CourseName</th>
+                    <td>
+                        <a asp-controller="Teacher" asp-action="Edit" asp-route-id="@obj.TeacherId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="Teacher" asp-action="Delete" asp-route-id="@obj.TeacherId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                    sno++;
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Department</p>
+    }
+
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

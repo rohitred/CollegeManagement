@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Student>
+
+
+@{
+    ViewData["Title"] = "Student";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Student List</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Student" asp-action="Create" class="btn btn-primary">Add New Student</a>
+        </div>
+    </div>
+    <br /><br />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>Student Name</th>
+                    <th>Student DateOfBirth</th>
+                    <th>Student Email</th>
+                    <th>Student Contact</th>
+                    <th>Student Address</th>
+                    <th>Student Course</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int countDep = 1; }
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td width="30%">@countDep</td>
+                    <td width="50%">@obj.StudentName</td>
+                    <td width="50%">@obj.DateOfBirth</td>
+                    <td width="50%">@obj.StudentEmail</td>
+                    <td width="50%">@obj.StudentContactNo</td>
+                    <td width="50%">@obj.StudentAddress</td>
+                    <td>
+                        <ul>
+                            @foreach (var cors in obj.Courses)
+                            {
+                                <li>@cors.CourseName</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <a asp-controller="Student" asp-action="Edit" asp-route-id="@obj.StudentId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="Student" asp-action="Delete" asp-route-id="@obj.StudentId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                    countDep++;
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Department</p>
+    }
+
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,94 @@
+﻿@model CollegeManagement.Models.Student
+
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<form method="post" asp-controller="Student" asp-action="Create">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Add Course</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="StudentName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="StudentName" class="form-control" />
+                        <span asp-validation-for="StudentName" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="DateOfBirth"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="DateOfBirth" class="form-control" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="StudentEmail"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="StudentEmail" class="form-control" />
+                        <span asp-validation-for="StudentEmail" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="StudentContactNo"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="StudentContactNo" class="form-control" />
+                        <span asp-validation-for="StudentContactNo" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="StudentAddress"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="StudentAddress" class="form-control" />
+                        <span asp-validation-for="StudentAddress" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Courses"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Courses" asp-items="@(new SelectList(ViewBag.listOfCourses,"CourseId","CourseName"))">
+
+                        </select>
+                        <span asp-validation-for="Courses" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-success w-100" value="Submit" />
+                        </div>
+                        <div>
+                            <a asp-controller="Course" asp-action="Index" class="btn btn-danger">Go Back</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+

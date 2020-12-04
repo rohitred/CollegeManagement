@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Course>
+
+
+@{
+    ViewData["Title"] = "Course";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Course List</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Course" asp-action="Create" class="btn btn-primary">Add New Course</a>
+        </div>
+    </div>
+    <br /><br />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>Course Name</th>
+                    <th>Course Code</th>
+                    <th>Course Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int countDep = 1; }
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td width="30%">@countDep</td>
+                    <td width="50%">@obj.CourseName</td>
+                    <td width="50%">@obj.CourseCode</td>
+                    <td width="50%"><p>@obj.CourseDescription</p></td>
+                    <td>
+                        <a asp-controller="Course" asp-action="Edit" asp-route-id="@obj.CourseId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="Course" asp-action="Delete" asp-route-id="@obj.CourseId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                  countDep++;
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Department</p>
+    }
+
+</div>
+
+@section Scripts{ 
+@{ <partial name="_ValidationScriptsPartial" />}
+}
