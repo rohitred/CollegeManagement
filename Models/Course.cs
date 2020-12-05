@@ -17,9 +17,6 @@ namespace CollegeManagement.Models
         [Required]
         public string CourseDescription { get; set; }
 
-        public virtual ICollection<Student> Students { get; set; }
-
-
-        public ICollection<Teacher> Teachers { get; set; }
+        public virtual ICollection<StudentCourse> StudentCourses { get; set; }
     }
 }

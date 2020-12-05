@@ -1,19 +1,14 @@
 ﻿using CollegeManagement.Attributes;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CollegeManagement.Models
+namespace CollegeManagement.Models.ViewModel
 {
-    public class Student
+    public class StudentViewModel
     {
-        public Student()
-        {
-            StudentCourses = new List<StudentCourse>();
-        }
         [Key]
         public int StudentId { get; set; }
         [Required]
@@ -27,14 +22,11 @@ namespace CollegeManagement.Models
         public string StudentContactNo { get; set; }
         [Required]
         [EmailAddress]
-        
+
         public string StudentEmail { get; set; }
 
-        [Required]
-        /*[StudentCourseValidate(ErrorMessage = "Select at least 2")]*/
-        public virtual ICollection<StudentCourse> StudentCourses { get; set; }
-
+        
+        [StudentCourseValidate(ErrorMessage = "You cannot select more than 2 courses")]
+        public ICollection<int> StudentCourses { get; set; }
     }
-
-    
 }

@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 namespace CollegeManagement.Attributes
 {
-    public class StudentCourseValidateAttribute:ValidationAttribute
+    public class StudentCourseValidateAttribute : ValidationAttribute
     {
-       
-            protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value == null)
             {
-                List<StudentCourse> instance = value as List<StudentCourse>;
-                int count = instance.Count();
-                if (count == 2)
-                    return ValidationResult.Success;
-                else
-                    return new ValidationResult(ErrorMessage);
+                return ValidationResult.Success;
             }
-        
+            List<int> instance = value as List<int>;
+            int count = instance.Count();
+            if (count <= 2)
+                return ValidationResult.Success;
+            else
+                return new ValidationResult(ErrorMessage);
+        }
+
     }
 }

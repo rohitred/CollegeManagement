@@ -1,5 +1,6 @@
 ﻿using CollegeManagement.Data;
 using CollegeManagement.Models;
+using CollegeManagement.Models.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,8 @@ namespace CollegeManagement.Controllers
         public IActionResult Index()
         {
             var student = _db.Students
-                .Include(s => s.Courses)
+                .Include(s => s.StudentCourses)
+                .ThenInclude(c=>c.Course)
                 .ToList();
             return View(student);
         }
@@ -37,13 +39,35 @@ namespace CollegeManagement.Controllers
         //POST : Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Student obj)
+        public IActionResult Create(StudentViewModel obj)
         {
             if (ModelState.IsValid)
             {
-                return View();
+                Student student = new Student()
+                {
+                    StudentName = obj.StudentName,
+                    StudentAddress = obj.StudentAddress,
+                    StudentContactNo = obj.StudentContactNo,
+                    StudentEmail = obj.StudentEmail,
+                };
+                _db.Students.Add(student);
+                _db.SaveChanges();
+                var courses = _db.Courses.Where(i => obj.StudentCourses.Contains(i.CourseId)).ToList();
+                foreach (var course in courses)
+                {
+                    var newStudentCourse = new StudentCourse()
+                        {
+                        StudentId = student.StudentId,
+                        CourseId = course.CourseId,
+                    };
+                        
+                    student.StudentCourses.Add(newStudentCourse);
+                }
+                _db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            else {
+            else
+            {
                 ViewBag.listOfCourses = _db.Courses.ToList();
                 return View(obj);
             }

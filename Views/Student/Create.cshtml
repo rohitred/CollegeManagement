@@ -1,4 +1,4 @@
-﻿@model CollegeManagement.Models.Student
+﻿@model CollegeManagement.Models.ViewModel.StudentViewModel
 
 @{
     ViewData["Title"] = "Add Student";
@@ -65,13 +65,13 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="Courses"></label>
+                        <label asp-for="StudentCourses"></label>
                     </div>
                     <div class="col-8">
-                        <select asp-for="Courses" asp-items="@(new SelectList(ViewBag.listOfCourses,"CourseId","CourseName"))">
+                        <select asp-for="StudentCourses" asp-items="@(new SelectList(ViewBag.listOfCourses,"CourseId","CourseName"))">
 
                         </select>
-                        <span asp-validation-for="Courses" class="text-danger"></span>
+                        <span asp-validation-for="StudentCourses" class="text-danger"></span>
                     </div>
 
                 </div>

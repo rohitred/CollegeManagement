@@ -43,9 +43,9 @@
                     <td width="50%">@obj.StudentAddress</td>
                     <td>
                         <ul>
-                            @foreach (var cors in obj.Courses)
+                            @foreach (var cors in obj.StudentCourses)
                             {
-                                <li>@cors.CourseName</li>
+                                <li>@cors.Course.CourseName</li>
                             }
                         </ul>
                     </td>
