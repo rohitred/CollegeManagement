@@ -1,16 +1,16 @@
 ﻿@model CollegeManagement.Models.ViewModel.StudentViewModel
 
 @{
-    ViewData["Title"] = "Add Student";
+    ViewData["Title"] = "Edit Student";
 }
 
-<form method="post" asp-controller="Student" asp-action="Create">
+<form method="post" asp-controller="Student" asp-action="Edit">
+    <input asp-for="StudentId" hidden />
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
-            <h2 class="text-info pl-3">Add Student</h2>
+            <h2 class="text-info pl-3">Add Course</h2>
         </div>
-
         <div class="row">
             <div class="col-8">
                 <div class="form-group row">
@@ -69,7 +69,6 @@
                     </div>
                     <div class="col-8">
                         <select asp-for="StudentCourses" asp-items="@(new SelectList(ViewBag.listOfCourses,"CourseId","CourseName"))">
-
                         </select>
                         <span asp-validation-for="StudentCourses" class="text-danger"></span>
                     </div>

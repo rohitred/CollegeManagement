@@ -37,7 +37,7 @@
                 <tr>
                     <td width="30%">@countDep</td>
                     <td width="50%">@obj.StudentName</td>
-                    <td width="50%">@obj.DateOfBirth</td>
+                    <td width="50%">@Convert.ToString(string.Format("{0:dd/MM/yyyy}", obj.DateOfBirth))</td>
                     <td width="50%">@obj.StudentEmail</td>
                     <td width="50%">@obj.StudentContactNo</td>
                     <td width="50%">@obj.StudentAddress</td>
@@ -61,7 +61,7 @@
     }
     else
     {
-        <p>No Department</p>
+        <p>No Students</p>
     }
 
 </div>

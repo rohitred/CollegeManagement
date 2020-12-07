@@ -11,10 +11,14 @@ namespace CollegeManagement.Models
         [Key]
         public int CourseId { get; set; }
         [Required]
+        [Display(Name ="Name")]
+        [StringLength(60, MinimumLength = 4)]
         public string CourseName { get; set; }
         [Required]
+        [Display(Name ="Course Code")]
         public string CourseCode { get; set; }
         [Required]
+        [Display(Name ="Course Description")]
         public string CourseDescription { get; set; }
 
         public virtual ICollection<StudentCourse> StudentCourses { get; set; }
