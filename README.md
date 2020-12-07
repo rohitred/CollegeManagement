@@ -1,6 +1,6 @@
 # CollegeManagement
 
-CollegeManagement in dot net core 3.1 MVC project that helps add, edit or delete students, teachers, etc.
+CollegeManagement in dot net core 3.1 MVC project that helps add, edit or delete students, teachers, courses and departments.
 
 ## Installation
 
