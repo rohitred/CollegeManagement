@@ -69,7 +69,6 @@
                     </div>
                     <div class="col-8">
                         <select asp-for="StudentCourses" asp-items="@(new SelectList(ViewBag.listOfCourses,"CourseId","CourseName"))">
-
                         </select>
                         <span asp-validation-for="StudentCourses" class="text-danger"></span>
                     </div>
@@ -91,4 +90,9 @@
         </div>
     </div>
 </form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
 

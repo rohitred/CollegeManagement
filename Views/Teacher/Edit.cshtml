@@ -5,7 +5,7 @@
 }
 
 <form method="post" asp-controller="Teacher" asp-action="Edit">
-    <input asp-for="TeacherId" hidden/>
+    <input asp-for="TeacherId" hidden />
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
@@ -94,4 +94,9 @@
     </div>
 
 </form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
 
