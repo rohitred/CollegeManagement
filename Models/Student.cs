@@ -35,7 +35,6 @@ namespace CollegeManagement.Models
 
         [Required]
         [Display(Name = "Courses")]
-        /*[StudentCourseValidate(ErrorMessage = "Select at least 2")]*/
         public virtual ICollection<StudentCourse> StudentCourses { get; set; }
 
     }
