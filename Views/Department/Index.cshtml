@@ -21,7 +21,8 @@
             <thead>
                 <tr>
                     <th>S.no</th>
-                    <th>Department Name</th>
+                    <th>Name</th>
+                    <th>Teachers</th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,11 +34,16 @@
                         <td width="30%">@countDep</td>
                         <td width="50%">@obj.DepartmentName</td>
                         <td>
+
+                            <a asp-controller="Department" asp-action="ShowTeacher" asp-route-id="@obj.DepartmentId" class="btn btn-primary">Show Teacher</a>
+
+                        </td>
+                        <td>
                             <a asp-controller="Department" asp-action="Edit" asp-route-id="@obj.DepartmentId" class="btn btn-primary">Edit</a>
                             <a asp-controller="Department" asp-action="Delete" asp-route-id="@obj.DepartmentId" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
-                  countDep++;
+                    countDep++;
                 }
             </tbody>
         </table>
@@ -49,6 +55,3 @@
 
 </div>
 
-@section Scripts{ 
-@{ <partial name="_ValidationScriptsPartial" />}
-}

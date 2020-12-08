@@ -1,6 +1,7 @@
 ﻿using CollegeManagement.Data;
 using CollegeManagement.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,9 @@ namespace CollegeManagement.Controllers
         }
         public IActionResult Index()
         {
-            var department = _db.Departments.ToList();
+            var department = _db.Departments
+                .Include(i=>i.Teachers)
+                .ToList();
             return View(department);
         }
 
@@ -78,6 +81,26 @@ namespace CollegeManagement.Controllers
             _db.Departments.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public IActionResult ShowTeacher(int id)
+        {
+            var obj = _db.Departments.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            var teacher = _db.Teachers
+                .Where(i => i.DepartmentId == id)
+                .ToList();
+            if (teacher == null)
+            {
+                return NotFound();
+            }
+            ViewBag.departmentName = obj.DepartmentName;
+            ViewBag.listOfTeacher = teacher;
+            return View();
         }
     }
 }

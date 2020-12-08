@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Department>
+
+
+@{
+    ViewData["Title"] = "Department";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+
+            <h2 class="text-primary">Teacher List in @{ @ViewBag.departmentName } Department</h2>
+        </div>
+    </div>
+    <br /><br />
+
+    <ul>
+        @{
+            foreach (var teacher in ViewBag.listOfTeacher)
+            {
+                <li>@teacher.TeacherName</li>
+            }
+        }
+    </ul>
+
+
+</div>
+
